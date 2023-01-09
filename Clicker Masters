@@ -80,7 +80,8 @@ function autoRebirth()
     end)
 end
 
-local Section = Tab:CreateSection("Auto Upgrade/Rank")
+local Tab = Window:CreateTab("Auto Stuff", 4483362458)
+local Section = Tab:CreateSection("Auto Stuff")
 local Toggle = Tab:CreateToggle({
 	Name = "Auto All Upgrades",
 	CurrentValue = false,
@@ -138,7 +139,7 @@ end
         end)
 
 local Toggle = Tab:CreateToggle({
-	Name = "Auto All Christmas Upgrades",
+	Name = "Auto All Aura",
 	CurrentValue = false,
 	Flag = "Auto Upgrade All2", 
 	Callback = function(Value)
@@ -147,17 +148,16 @@ end
 })
 
 
-    local itemIds = {"ClickMultiplier", "SnowflakeMultiplier", "LuckMultiplier", "+1 Pet Equip", "MoreStorage", "HatchingSpeed"}
+    local itemIds = {1, 2, 3, 4, 5, 6}
     spawn(function ()
         while wait() do
             if getgenv().autoUpgradeAll2 then
                 for _, itemId in pairs(itemIds) do
                     local args = {
-                        [1] = "Christmas",
-                        [2] = itemId
+                        [1] = itemId
                     }
                     
-                    game:GetService("ReplicatedStorage").Events.PurchaseUpgrade:FireServer(unpack(args))
+                    game:GetService("ReplicatedStorage").Events.AuraAction:FireServer(unpack(args))
                     wait()
                 end
             end
